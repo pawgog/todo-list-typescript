@@ -35,10 +35,12 @@ const config: Configuration = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
+  target: 'web',
   devServer: {
     static: path.join(__dirname, 'dist'),
     compress: true,
     port: 4000,
+    hot: false,
   },
 };
 export default config;
