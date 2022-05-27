@@ -1,4 +1,5 @@
 import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 
@@ -14,14 +15,19 @@ const config: Configuration = {
         test: /\.(ts|js)?$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-typescript'],
-          },
+          loader: 'ts-loader',
         },
       },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'index.html',
+      inject: 'body',
+      chunks: ['index'],
+      filename: 'index.html',
+    }),
+  ],
   resolve: {
     extensions: ['.ts', '.js'],
   },
