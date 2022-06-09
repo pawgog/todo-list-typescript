@@ -28,6 +28,7 @@ form?.addEventListener('submit', (e) => {
   };
 
   addListItem(task);
+  input.value = '';
 });
 
 function addListItem(taskObject: Task) {
@@ -35,6 +36,7 @@ function addListItem(taskObject: Task) {
   const label = document.createElement('label');
   const checkbox = document.createElement('input');
   checkbox.type = 'checkbox';
+  checkbox.checked = taskObject.completed;
   label.append(checkbox, taskObject.title);
   item.append(label);
   list?.append(item);
