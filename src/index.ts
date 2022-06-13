@@ -52,11 +52,13 @@ function addListItem(taskObject: Task) {
 }
 
 function saveTasks() {
-  localStorage.setItem('ToDo tasks', JSON.stringify(tasks));
+  localStorage.setItem('ToDo_tasks', JSON.stringify(tasks));
 }
 
 function loadTasks(): Task[] {
-  const taskJSON = localStorage.getItem('ToDO tasks');
+  const taskJSON = localStorage.getItem('ToDo_tasks');
+  console.log(taskJSON);
+
   if (taskJSON === null) return [];
   return JSON.parse(taskJSON);
 }
