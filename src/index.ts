@@ -14,6 +14,9 @@ const form = document.querySelector<HTMLFormElement>('[data-attribute="form"]');
 const input = document.querySelector<HTMLInputElement>(
   '[data-attribute="input"]'
 );
+const tasks: Task[] = loadTasks();
+
+tasks.forEach(addListItem);
 
 form?.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -26,6 +29,7 @@ form?.addEventListener('submit', (e) => {
     completed: false,
     createdAt: new Date(),
   };
+  tasks.push(task);
   saveTasks();
 
   addListItem(task);
@@ -49,4 +53,10 @@ function addListItem(taskObject: Task) {
 
 function saveTasks() {
   localStorage.setItem('ToDo tasks', JSON.stringify(tasks));
+}
+
+function loadTasks(): Task[] {
+  const taskJSON = localStorage.getItem('ToDO tasks');
+  if (taskJSON === null) return [];
+  return JSON.parse(taskJSON);
 }
