@@ -26,6 +26,7 @@ form?.addEventListener('submit', (e) => {
     completed: false,
     createdAt: new Date(),
   };
+  saveTasks();
 
   addListItem(task);
   input.value = '';
@@ -35,9 +36,17 @@ function addListItem(taskObject: Task) {
   const item = document.createElement('li');
   const label = document.createElement('label');
   const checkbox = document.createElement('input');
+  checkbox.addEventListener('change', () => {
+    taskObject.completed = checkbox.checked;
+    saveTasks();
+  });
   checkbox.type = 'checkbox';
   checkbox.checked = taskObject.completed;
   label.append(checkbox, taskObject.title);
   item.append(label);
   list?.append(item);
+}
+
+function saveTasks() {
+  localStorage.setItem('ToDo tasks', JSON.stringify(tasks));
 }
