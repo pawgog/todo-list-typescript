@@ -57,7 +57,6 @@ function saveTasks() {
 
 function loadTasks(): Task[] {
   const taskJSON = localStorage.getItem('todo_tasks');
-  console.log(taskJSON);
 
   if (taskJSON === null) return [];
   return JSON.parse(taskJSON);
